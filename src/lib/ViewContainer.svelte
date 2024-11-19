@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Chip, Divider, ListItemButton } from "m3-svelte";
+    // import { Chip, Divider, ListItemButton } from "m3-svelte";
 
 
     import type { Config } from "../type";
@@ -28,9 +28,7 @@
                     {#if d.parentId == undefined} 
 
                         <!-- <div class:se={d.id == select1}> -->
-                            <ListItemButton 
-                            extraOptions={{class: (d.id == select1)? "" : ""}} 
-                            headline={d.name} lines={1} on:click={() => selected(d.id)}></ListItemButton>
+
                         <!-- </div> -->
 
                         <!-- <Chip class="chipbutton" type={"input"} selected={d.id == select1} >{d.name}</Chip> -->
@@ -46,7 +44,7 @@
             <div class="list">    
                 {#each div?.templates ?? [] as d}
                     {#if d.parentId == undefined} 
-                        <ListItemButton headline={d.name} lines={1}></ListItemButton>
+                    
                     {/if}
                 {/each}
             </div>
@@ -73,6 +71,7 @@
         height: 100%;
         display: grid;
         grid-template-rows: 0.5fr 0.5fr;
+        overflow: hidden;
         /* grid-template-rows: minmax(0, 0.5fr) minmax(0, 0.5fr); */
     }
 

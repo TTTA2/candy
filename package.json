@@ -19,6 +19,6 @@
     "vite": "^5.4.10"
   },
   "dependencies": {
-    "m3-svelte": "^3.4.1"
+    "svelte-headlessui": "^0.0.45"
   }
 }

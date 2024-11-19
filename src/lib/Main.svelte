@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { Button, Dialog, Divider, ListItem, ListItemButton } from "m3-svelte";
+  import { type Dialog } from "svelte-headlessui";
+
     import ViewContainer from "./ViewContainer.svelte";
     import type { Config } from "../type";
 
@@ -22,9 +23,27 @@
 
     <nav>
 
-        <Button type={"filled"} on:click={() => isOpenDivDialog = true}>{divName}</Button>
+    
+        <Dialog open={isOpen} on:close={() => (isOpen = false)}>
+            <DialogOverlay />
+          
+            <DialogTitle>Deactivate account</DialogTitle>
+            <DialogDescription>
+              This will permanently deactivate your account
+            </DialogDescription>
+          
+            <p>
+              Are you sure you want to deactivate your account? All of your data will be
+              permanently removed. This action cannot be undone.
+            </p>
+          
 
-        <Dialog headline="ディビジョン選択" bind:open={isOpenDivDialog} closeOnClick={false}>
+          </Dialog>
+          
+
+        <!-- <Button type={"filled"} on:click={() => isOpenDivDialog = true}>{divName}</Button> -->
+
+        <!-- <Dialog headline="ディビジョン選択" bind:open={isOpenDivDialog} closeOnClick={false}>
 
             ディビジョンを選択してください
 
@@ -39,7 +58,7 @@
                 <Button type="text" on:click={() => (isOpenDivDialog = false)}>キャンセル</Button>
             </svelte:fragment>
 
-        </Dialog>
+        </Dialog> -->
 
     </nav>
 
