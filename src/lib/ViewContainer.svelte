@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Divider, ListItemButton } from "m3-svelte";
+    import { Chip, Divider, ListItemButton } from "m3-svelte";
 
 
     import type { Config } from "../type";
@@ -11,7 +11,9 @@
     let select1 = $state("");
     let select2 = $state("");
 
-
+    const selected = (id: string) => {
+        select1 = id;
+    }
 
 </script>
 
@@ -24,7 +26,15 @@
             <div class="list">    
                 {#each div?.templates ?? [] as d}
                     {#if d.parentId == undefined} 
-                        <ListItemButton headline={d.name} lines={1}></ListItemButton>
+
+                        <!-- <div class:se={d.id == select1}> -->
+                            <ListItemButton 
+                            extraOptions={{class: (d.id == select1)? "" : ""}} 
+                            headline={d.name} lines={1} on:click={() => selected(d.id)}></ListItemButton>
+                        <!-- </div> -->
+
+                        <!-- <Chip class="chipbutton" type={"input"} selected={d.id == select1} >{d.name}</Chip> -->
+                        <!-- <ListItemButton headline={d.name} lines={1}></ListItemButton> -->
                     {/if}
                 {/each}
             </div>
@@ -69,19 +79,28 @@
     .list {
         padding: 8px;
         overflow: auto;
-        display: flex;
-        flex-direction: column;
-        background-color: rgb(var(--m3-scheme-surface-container-high))
+        /* display: flex; */
+        /* flex-direction: column; */
+        background-color: rgb(var(--m3-scheme-surface-container-high));
     }
 
     .listBox {
-        padding: 6px;
+        height: 100%;
+        overflow: auto;
+        /* padding: 6px; */
         display: grid;
         grid-template-rows: auto 1fr;
     }
 
-    .caption {
+    .se {
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(var(--m3-scheme-primary));
 
+    }
+
+    .caption {
+        
     }
 
 </style>
