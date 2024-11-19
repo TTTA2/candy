@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { Button, Dialog, Divider, ListItem, ListItemButton } from "m3-svelte";
     import ViewContainer from "./ViewContainer.svelte";
     import type { Config } from "../type";
 
@@ -22,7 +21,9 @@
 
     <nav>
 
-        <Button type={"filled"} on:click={() => isOpenDivDialog = true}>{divName}</Button>
+        
+
+        <!-- <Button type={"filled"} on:click={() => isOpenDivDialog = true}>{divName}</Button>
 
         <Dialog headline="ディビジョン選択" bind:open={isOpenDivDialog} closeOnClick={false}>
 
@@ -39,7 +40,7 @@
                 <Button type="text" on:click={() => (isOpenDivDialog = false)}>キャンセル</Button>
             </svelte:fragment>
 
-        </Dialog>
+        </Dialog> -->
 
     </nav>
 
