@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { type Dialog } from "svelte-headlessui";
 
     import ViewContainer from "./ViewContainer.svelte";
     import type { Config } from "../type";
