@@ -27,11 +27,11 @@
                 {#each div?.templates ?? [] as d}
                     {#if d.parentId == undefined} 
 
-                        <!-- <div class:se={d.id == select1}> -->
-                            <ListItemButton 
-                            extraOptions={{class: (d.id == select1)? "" : ""}} 
+                        <div class:se={d.id == select1}>
+                        <ListItemButton 
+                            extraOptions={{style: "width:100%;"}}
                             headline={d.name} lines={1} on:click={() => selected(d.id)}></ListItemButton>
-                        <!-- </div> -->
+                        </div>
 
                         <!-- <Chip class="chipbutton" type={"input"} selected={d.id == select1} >{d.name}</Chip> -->
                         <!-- <ListItemButton headline={d.name} lines={1}></ListItemButton> -->
@@ -73,6 +73,7 @@
         height: 100%;
         display: grid;
         grid-template-rows: 0.5fr 0.5fr;
+        overflow: hidden;
         /* grid-template-rows: minmax(0, 0.5fr) minmax(0, 0.5fr); */
     }
 
@@ -95,7 +96,13 @@
     .se {
         display: flex;
         flex-direction: column;
-        background-color: rgb(var(--m3-scheme-primary));
+        background-color: currentColor;
+        opacity: 0;
+    transition: opacity 200ms;
+
+        /* opacity: 0.12; */
+
+        /* box-shadow: var(--m3-util-elevation-2); */
 
     }
 
