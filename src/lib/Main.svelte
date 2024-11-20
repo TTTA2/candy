@@ -1,6 +1,7 @@
 <script lang="ts">
     import ViewContainer from "./ViewContainer.svelte";
     import type { Config } from "../type";
+    import Button from "./components/Button.svelte";
 
     // @ts-ignore
     const config: Config = jsConfig;
@@ -21,7 +22,7 @@
 
     <nav>
 
-        
+        <Button>検索</Button>
 
         <!-- <Button type={"filled"} on:click={() => isOpenDivDialog = true}>{divName}</Button>
 

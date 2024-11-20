@@ -18,26 +18,9 @@
 <div class="list">
 
     {#each items ?? [] as item}
-    
-        <!-- {#if d.parentId == undefined}  -->
-
-            <div class:selected={item.id == selected} class="list-item" onclick={() => handleItemClick(item.id, item.text)}>
-                <span>{item.text}</span>
-            </div>
-
-
-            <!-- <div class:se={d.id == select1}> -->
-
-                
-
-            <!-- <ListItemButton 
-                extraOptions={{style: "width:100%;"}}
-                headline={d.name} lines={1} on:click={() => selected(d.id)}></ListItemButton> -->
-            <!-- </div> -->
-
-            <!-- <Chip class="chipbutton" type={"input"} selected={d.id == select1} >{d.name}</Chip> -->
-            <!-- <ListItemButton headline={d.name} lines={1}></ListItemButton> -->
-        <!-- {/if} -->
+        <div class:selected={item.id == selected} class="list-item" onclick={() => handleItemClick(item.id, item.text)}>
+            <span>{item.text}</span>
+        </div>
     {/each}
 </div>
 
@@ -61,7 +44,7 @@
 
     .list-item.selected {
         border: solid 2px var(--border-active);
-        transition: border-color 0.6s;
+        transition: border-color 0.3s;
         /* transition: outline-color 1s; */
     }
 

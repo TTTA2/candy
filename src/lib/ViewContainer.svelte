@@ -2,6 +2,7 @@
 
     import type { Config, IdTextPair } from "../type";
     import ListBox from "./components/ListBox.svelte";
+    import TextView from "./components/TextView.svelte";
 
     const { config, division } : { config: Config, division: string } = $props();
 
@@ -9,22 +10,37 @@
 
     let select1 = $state("");
     let select2 = $state("");
+    let select3 = $state("");
+
+    let currentSelect = $state("");
 
     const items1: IdTextPair[] | undefined = 
-        $derived(div?.templates.filter(t => t.parentId == undefined).map(t => ({ id: t.id, text: t.name })));
+    $derived(div?.templates.filter(t => t.parentId == undefined).map(t => ({ id: t.id, text: t.name })));
 
     const items2: IdTextPair[] | undefined = 
     $derived(div?.templates.filter(t => t.parentId == select1).map(t => ({ id: t.id, text: t.name })));
 
+    const items3: IdTextPair[] | undefined = 
+    $derived(div?.templates.filter(t => t.parentId == select2).map(t => ({ id: t.id, text: t.name })));
+
+    const content = $derived(div?.templates.find(t => t.id == currentSelect));
+
     const onItemClick1 = (id: string) => { 
+        currentSelect = id;
         select1 = id;
         select2 = "";
+        select3 = "";
     }
 
-    const onItemClick2 = (id: string) => select2 = id;
+    const onItemClick2 = (id: string) => { 
+        currentSelect = id;
+        select2 = id;
+        select3 = "";
+    }
 
-    const selected = (id: string) => {
-        select1 = id;
+    const onItemClick3 = (id: string) => { 
+        currentSelect = id;
+        select3 = id;
     }
 
 </script>
@@ -45,6 +61,17 @@
         
     </div>
 
+    <div class="single">
+
+        <div class="listbox">
+            <span class="caption list-tab">3階層</span>
+            <ListBox selected={select3} items={items3} onItemClick={onItemClick3}></ListBox>
+        </div>
+
+    </div>
+
+    <TextView content={content?.text ?? ""}></TextView>
+
 
     <!-- <div>{div?.name}</div> -->
 
@@ -57,15 +84,22 @@
         height: 100%;
         padding: 8px;
         display: grid;
-        grid-template-columns: 0.3fr minmax(0, 0.7fr);
+        grid-template-columns: 200px 200px 1fr;
+        /* grid-template-columns: 0.15fr minmax(0, 0.15fr) 0.7fr; */
         box-sizing: border-box;
+        gap: 6px;
     }
 
     .horizonSplit {
-        gap: 4px;
+        gap: 6px;
         height: 100%;
         display: grid;
         grid-template-rows: 0.5fr 0.5fr;
+        overflow: hidden;
+    }
+
+    .single {
+        height: 100%;
         overflow: hidden;
     }
 
@@ -73,7 +107,8 @@
         background-color: var(--background-color2);
         border: 1px solid var(--border-color1);
         border-bottom: none;
-        padding: 8px 16px 8px 16px;
+        padding: 2px 16px 2px 16px;
+        font-size: 80%;
         border-radius: 4px 4px 0px 0px;
         width: fit-content;
         margin-bottom: -1px;
